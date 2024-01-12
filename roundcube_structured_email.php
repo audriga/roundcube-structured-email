@@ -174,7 +174,7 @@ class roundcube_structured_email extends rcube_plugin
     function on_message_compose_hook($args)
     {
         $param = $args['param'];
-        $param['body'] = structured_data_util::compose_structured_data_message(
+        $param['body'] .= structured_data_util::compose_structured_data_message(
             $param
         );
 
