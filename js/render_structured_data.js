@@ -22,7 +22,7 @@ rcmail.render_structured_data = function() {
             var username = jsonLdUsername !== null ? jsonLdUsername.text() : '';
 
             actionButtons = $('<div id="individualMessageActionButtons" style="background-color:#f1f1f1;float:right;align-self:flex-end;"></div>');
-            if (jsonLdActions !== null && jsonLdActions.length > 0 && msgUid !== '' && username !== '') {
+            if (jsonLdActions !== undefined && jsonLdActions !== null && jsonLdActions.length > 0 && msgUid !== '' && username !== '') {
                 jsonLdActions.forEach(jsonLdAction => {
                     var actionButtonText;
                     if (jsonLdAction['@type'] === 'ConfirmAction') {
