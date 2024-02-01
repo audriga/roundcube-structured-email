@@ -1,0 +1,51 @@
+@import url("https://use.fontawesome/com/releases/v5.13.0/css/all.css");
+
+button.btn.actionButton {
+    font-size: 0.8em;
+}
+
+.actionButton {
+    height:25px;
+    width: 70px;;
+    opacity:0.8;
+    line-height: 0.8em;
+    text-align: center;
+    font-size: 0.8em;
+}
+
+.actionButton.actionButtonClicked {
+    opacity:0.5;
+}
+
+div.structured-data-container img {
+    height: 128px;
+    width: 128px;
+}
+
+/* geolocation button in taskbar */
+#taskbar a.button-geolocation span.button-inner {
+    height: 14px;
+}
+
+a.button-geolocation::before {
+    content: "\f124";
+}
+
+#taskbar a.button-geolocation:hover span.button-inner,
+#taskbar a.button-geolocation.button-selected span.button-inner {
+    height: 14px;
+}
+
+/* compose_form button in taskbar */
+#taskbar a.button-compose-form span.button-inner {
+    height: 14px;
+}
+
+a.button-compose-form::before {
+    content: "\f044";
+}
+
+#taskbar a.button-compose-form:hover span.button-inner,
+#taskbar a.button-compose-form.button-selected span.button-inner {
+    height: 14px;
+}

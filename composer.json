@@ -1,0 +1,32 @@
+{
+    "name": "audriga/roundcube-structured-email",
+    "description": "A Roundcube plugin for adding support for structured email",
+    "type": "roundcube-plugin",
+    "authors": [
+        {
+            "name": "Stanimir Bozhilov",
+            "email": "stanimir@audriga.com"
+        },
+        {
+            "name": "Lukas Frank",
+            "email": "lukas@audriga.com"
+        },
+        {
+            "name": "Joris Baum",
+            "email": "joris@audriga.com"
+        },
+        {
+            "name": "Hans-Joerg Happel",
+            "email": "hans-joerg@audriga.com"
+        }
+    ],
+    "require": {
+        "mustache/mustache": "^2.14",
+        "roundcube/plugin-installer": "^0.3.2"
+    },
+    "config": {
+        "allow-plugins": {
+            "roundcube/plugin-installer": true
+        }
+    }
+}

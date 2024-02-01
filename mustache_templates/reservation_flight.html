@@ -1,0 +1,77 @@
+<!-- <div class="reservation">
+    <div class="departure">
+        <div class="iata">
+            {{ reservationFor.departureAirport.iataCode }}
+        </div>
+        <div class="airport">
+            {{ reservationFor.departureAirport.name }}
+        </div>
+        {{ # reservationFor.departureTime }}
+        <div>
+            {{ reservationFor.departureTime }}
+        </div>
+        {{ / reservationFor.departureTime }}
+    </div>
+    <div class="connection">
+        <div><span aria-hidden=false
+    aria-label="Airplane"
+    class="material-design-icon airplane-icon"
+    role="img">
+<svg fill="currentColor"
+     class="material-design-icon__svg"
+     width=24
+     height=24
+     viewBox="0 0 24 24">
+  <path d="M21,16V14L13,9V3.5A1.5,1.5 0 0,0 11.5,2A1.5,1.5 0 0,0 10,3.5V9L2,14V16L10,13.5V19L8,20.5V22L11.5,21L15,22V20.5L13,19V13.5L21,16Z">
+    <title> "Airplane" </title>
+  </path>
+</svg>
+</span>
+</div>
+<div>{{reservationFor.airline.iataCode}} {{ reservationFor.flightNumber }}</div>
+        {{ # reservation }}
+        <div>
+            {{ replaced }}
+        </div>
+        {{ / reservation }}
+        {{ ^ reservation }}
+        <div>
+            <ArrowIcon decorative />
+        </div>
+        {{ / reservation }}
+    </div>
+    <div class="arrival">
+        <div class="iata">
+            {{ reservationFor.arrivalAirport.iataCode }}
+        </div>
+        <div class="airport">
+            {{ reservationFor.arrivalAirport.name }}
+        </div>
+        {{ # reservationFor.arrivalTime }}
+        <div>
+            {{ reservationFor.arrivalTime }}
+        </div>
+        {{ / reservationFor.arrivalTime }}
+    </div>
+</div> -->
+
+<table cellpadding="10">
+    <tbody>
+    <tr>
+    <td>{{ reservationFor.departureAirport.iataCode }}</td>
+    <td>&nbsp;</td>
+    <td>{{ reservationFor.arrivalAirport.iataCode }}</td>
+    </tr>
+    <tr>
+    <td>{{ reservationFor.departureAirport.name }}</td>
+    <td style="text-align: center; vertical-align: middle;">{{reservationFor.airline.iataCode}} {{ reservationFor.flightNumber }}</td>
+    <td>{{ reservationFor.arrivalAirport.name }}</td>
+    </tr>
+    <tr>
+    <td>{{ reservationFor.departureTime }}</td>
+    <td>&nbsp;</td>
+    <td>{{ reservationFor.arrivalTime }}</td>
+    </tr>
+    </tbody>
+    </table>
+    

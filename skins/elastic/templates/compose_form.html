@@ -1,0 +1,46 @@
+<roundcube:include file="includes/layout.html" />
+<roundcube:include file="includes/menu.html" />
+
+<div id="layout-content" class="listbox selected" role="main">
+	<div id="compose-content" class="formcontainer content">
+		<!-- message headers -->
+        <form method="post" id="structuredform" name="form" action="mail">
+                <input type="hidden" name="_task" value="mail">
+                <input type="hidden" name="_action" value="send">
+                <input type="hidden" name="_store_target" value="[Gmail]/Sent Mail">
+
+
+                <label for="_from" class="col-2 col-form-label"><roundcube:label name="from" /></label>
+                <div class="col-10">
+                    <roundcube:object name="composeheaders" part="from" id="_from" form="form" tabindex="1" class="form-control" />
+                </div>
+
+                <label for="_to" class="col-2 col-form-label"><roundcube:label name="to" /></label>
+                <div class="col-10">
+                    <roundcube:object name="composeheaders" part="to" id="_to" form="form" tabindex="1" aria-required="true" data-recipient-input="true" />
+                </div>
+
+                <label for="_request" class="col-2 col-form-label">Request</label>
+                <div class="col-3">
+                    <roundcube:object name="composerequest" id="_request" form="form" tabindex="1" aria-required="true" />
+                </div>
+
+                <label for="_subject" class="col-2 col-form-label"><roundcube:label name="subject" /></label>
+                <div class="col-10">
+                    <roundcube:object name="subjectfield" id="_subject" form="form" tabindex="1" class="form-control" />
+                </div>
+
+                <label for="_structuredform" class="col-3 col-form-label">Structured Data Form</label>
+                <div class="col-10">
+                    <roundcube:object name="structuredform" form="form" tabindex="1" class="form-control" />
+                </div>
+
+                <div class="col-10">
+                    <roundcube:button command="sendstructuredform" class="btn btn-primary send" label="send" tabindex="1" data-content-button="true" />
+                </div>
+                
+		</form>
+	</div>
+</div>
+
+<roundcube:include file="includes/footer.html" />
