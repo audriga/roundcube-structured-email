@@ -77,6 +77,12 @@ class roundcube_structured_email extends rcube_plugin
         $this->include_script('js/render_structured_data.js');
         $this->include_script('js/signature.js');
         $this->include_script('js/util.js');
+
+        // include l2dh
+        $this->include_script("node_modules/ld2h/jsonld2html-bundle.js");
+
+        $this->include_stylesheet("node_modules/ld2h/style/default_card.css");
+
     }
 
     /**

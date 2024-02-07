@@ -49,19 +49,9 @@ class structured_data_util
             case 'flight':
                 return file_get_contents(__DIR__ . '/../mustache_templates/reservation_flight.html');
             
-            case 'album':
-                return file_get_contents(__DIR__ . '/../mustache_templates/music_album.html');
-
-            case 'geo':
-                return file_get_contents(__DIR__ . '/../mustache_templates/place_geo.html');
-
             case 'signature':
                 return file_get_contents(__DIR__ . '/../mustache_templates/signature.html');
 
-            case 'lodging':
-
-            default:
-                return file_get_contents(__DIR__ . '/../mustache_templates/default_placeholder.html');
         }
     }
 
