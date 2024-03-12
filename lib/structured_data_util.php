@@ -382,7 +382,7 @@ class structured_data_util
         $jsonLd = null;
         $startScriptTagPos = strpos($html, '<script type="application/ld+json">');
 
-        if ($startScriptTagPos) {
+        if ($startScriptTagPos !== false) {
             /**
              * Remove anything before '<script type="application/ld+json">'
              * from the HTML
