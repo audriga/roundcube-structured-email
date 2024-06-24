@@ -61,7 +61,8 @@ function insert_structured_data(props) {
                     width: 500
                 });
                 break;
-        
+            
+            
             case 'musicAlbum':
                 var action_func = function(e) {
                     // Grab the input from the text fields
@@ -104,8 +105,78 @@ function insert_structured_data(props) {
                 });
                 break;
 
+            case 'approvalRequest':
+                var action_func = function(e) {
+                    // Grab the input from the text fields
+                    var requestName = $('#approval-request-name-input').val();
+                    var requestDescription =$('#approval-request-description-input').val();
+                    var requestActionConfirmation = $('#approval-request-action-to-confirm-input').val();
+                    var requestActionCancelation = $('#approval-request-action-to-cancel-input').val();
+
+                    
+                
+                    var structuredData = `
+                    <div class="mceNonEditable">
+                    <div id="jsonDivBeforeSend" style="display:none;">
+                    {
+                        "@context": "http://schema.org",
+                        "@type": "EmailMessage",
+                        "name": "${requestName}",
+                        "description": "${requestDescription}",
+                        "potentialAction": [
+                          {
+                            "@type": "ConfirmAction",
+                            "name": "${requestActionConfirmation}",
+                            "target": "mailto:test_new23@mw-emailtest.de"
+                          },
+                          {
+                            "@type": "CancelAction",
+                            "name": "${requestActionCancelation}",
+                            "target": "mailto:test_new23@mw-emailtest.de"
+                          }
+                        ]
+                      }
+                    </div>
+                    <table cellpadding="32">
+                    <tbody>
+                    <tr>
+                    <td><h2>Take some action to the "${requestName}"</h2></td>
+                    </tr>
+                    </tbody>
+                    </table>
+                    </div>`;
+
+                    if (!rcmail.editor.is_html()) {
+                        rcmail.editor.toggle(true, false);
+                    }
+                    setTimeout(function() {
+                        rcmail.editor.set_content(structuredData);
+                    }, 1000);
+
+                    // "return true" closes the dialog upon clicking on the "insert" button
+                    return true;
+                };
+
+                // Create a dialog
+                rcmail.simple_dialog($('#structured-templates-dialog-approval-request'), 'Approval Request', action_func, {
+                    button: 'insert',
+                    height: 180,
+                    width: 500
+                });
+                break;
+            
+
+
+
             default:
                 break;
+
+            
+
+            
+
+
+
         }
         
         

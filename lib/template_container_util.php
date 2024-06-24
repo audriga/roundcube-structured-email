@@ -85,9 +85,26 @@ class template_container_util
                 ],
                 'Music Album'
             );
+            
+            $item3 = html::a(
+                [
+                    'href' => '#',
+                    'unselectable' => 'on',
+                    'tabindex' => '0',
+                    'onclick' => sprintf(
+                        "return %s.command('insert-structured-data',"
+                        . " '%s', this, event)",
+                        rcmail_output::JS_OBJECT_NAME,
+                        'approvalRequest'
+                    ),
+                    
+
+                ], 'Approval Request'
+            );
 
             $templatesList->add([], $item);
             $templatesList->add([], $item2);
+            $templatesList->add([], $item3);
 
 
             $rcmail->output->add_footer(
@@ -147,6 +164,50 @@ class template_container_util
                         ]
                     )
                 )
+                . html::div(
+                    [
+                        'id' => 'structured-templates-dialog-approval-request',
+                        'class' => 'popupmenu'
+                    ],
+                    html::tag('label', [], 'Request Name')
+                    . html::br()
+                    . html::tag(
+                        'input',
+                        [
+                            'type' => 'text',
+                            'id' => 'approval-request-name-input'
+                        ]
+                    )
+                    
+                    . html::tag('label', [], 'Request description')
+                    . html::br()
+                    . html::tag(
+                        'input',
+                        [
+                            'type' => 'text',
+                            'id' => 'approval-request-description-input'
+                        ]
+                    )
+
+                    . html::tag('label', [], 'Action to confirm')
+                    . html::br()
+                    . html::tag(
+                        'input',
+                        [
+                            'type' => 'text',
+                            'id' => 'approval-request-action-to-confirm-input'
+                        ]
+                    )
+                    . html::tag('label', [], 'Action to cancel/deny')
+                    . html::br()
+                    . html::tag(
+                        'input',
+                        [
+                            'type' => 'text',
+                            'id' => 'approval-request-action-to-cancel-input'
+                        ]
+                    )
+                )      
             );
         }
 

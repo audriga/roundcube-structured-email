@@ -22,7 +22,7 @@ rcmail.render_structured_data = function() {
             var username = jsonLdUsername !== null ? jsonLdUsername.text() : '';
 
             actionButtons = $('<div id="individualMessageActionButtons" style="background-color:#f1f1f1;float:right;align-self:flex-end;"></div>');
-            if (jsonLdActions !== null && jsonLdActions.length > 0 && msgUid !== '' && username !== '') {
+            if (jsonLdActions !== undefined && jsonLdActions !== null && jsonLdActions.length > 0 && msgUid !== '' && username !== '') {
                 jsonLdActions.forEach(jsonLdAction => {
                     var actionButtonText;
                     if (jsonLdAction['@type'] === 'ConfirmAction') {
@@ -86,11 +86,23 @@ rcmail.render_structured_data = function() {
 
             var structuredHtml = '';
             var shouldRender = true;
-            if (jsonLd !== null && mustacheTemplateString !== '') {
-                if (jsonLd['@type'] === 'EmailSignature') {
+            var didRender = false;
+            if (jsonLd !== null ) {
+                if (jsonLd['@type'] === 'EmailSignature' && mustacheTemplateString !== '') {
                     // Make the signature, contained in the JSON-LD available for later via an env var
                     rcmail.env.emailSignatureFromJsonLd = jsonLd.signature;
-                } else if (jsonLd['@type'] === 'OutOfOffice') {
+                    let temp_card = Mustache.render(mustacheTemplateString, jsonLd);
+                    structuredHtml = $('<div id="structured-data-content">').html(temp_card);
+                    didRender = true;
+                }
+                else if (jsonLd['@type'] === 'FlightReservation' && mustacheTemplateString !== ''){
+                    // TODO Currently FlightReservation is not supported in ld2h
+                    let temp_card = Mustache.render(mustacheTemplateString, jsonLd);
+                    structuredHtml = $('<div id="structured-data-content">').html(temp_card);
+                    didRender = true;
+                } 
+                else if (jsonLd['@type'] === 'OutOfOffice' && mustacheTemplateString !== '') {
+                    //TODO check if this code is still needed, functionality splitted in structured_vacation_notice
                     // Reformat the "start" and "end" dates of "OutOfOffice" JSON-LDs
                     var startDate = new Date(jsonLd['start']);
                     var endDate = new Date(jsonLd['end']);
@@ -99,9 +111,14 @@ rcmail.render_structured_data = function() {
                     var currentDate = new Date();
                     // Only render OOF structured data if the OOF is currently happening
                     shouldRender = currentDate > startDate && currentDate < endDate;
+
                 }
-                structuredHtml = Mustache.render(mustacheTemplateString, jsonLd);
-                structuredHtml = $('<div id="structured-data-content">').html(structuredHtml);
+              
+                // If we had no special cases yet, we use ld2h
+                if(didRender === false){
+                    const card = Jsonld2html.render(jsonLd);
+                    structuredHtml = $('<div id="structured-data-content">').html(card);
+                }
             }
             
             if (shouldRender) {
