@@ -2,6 +2,6 @@
   "name": "roundcube-structured-email",
   "version": "1.0.0-alpha",
   "dependencies": {
-    "ld2h": "bitbucket:audriga/jsonld2html-javascript"
+    "jsonld2html-cards": ">=1.0.0-beta"
   }
 }
