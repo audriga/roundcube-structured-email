@@ -17,11 +17,6 @@ button.btn.actionButton {
     opacity:0.5;
 }
 
-div.structured-data-container img {
-    height: 128px;
-    width: 128px;
-}
-
 /* geolocation button in taskbar */
 #taskbar a.button-geolocation span.button-inner {
     height: 14px;
