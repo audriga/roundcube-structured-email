@@ -116,6 +116,8 @@ rcmail.render_structured_data = function() {
               
                 // If we had no special cases yet, we use ld2h
                 if(didRender === false){
+                    Jsonld2html.setTemplateOfType("https://ld2h/Default",Jsonld2html.allTemplates.cardDefaultBootstrap);
+                    Jsonld2html.setSubtemplateOfType("https://ld2h/Default",Jsonld2html.allSubtemplates.subDefaultBootstrap);
                     const card = Jsonld2html.render(jsonLd);
                     structuredHtml = $('<div id="structured-data-content">').html(card);
                 }
@@ -125,7 +127,7 @@ rcmail.render_structured_data = function() {
                 messageObjects = $('div#message-objects');
                 var intervalId;
                 if (messageObjects !== null && structuredHtml !== null && structuredHtml !== '') {
-                    var structuredDataContainer = $('<div class="info structured-data-container" style="background-color:#f1f1f1;width:100%;display:flex;flex-direction:column;">');
+                    var structuredDataContainer = $('<div class="info structured-data-container" style="width:100%;display:flex;flex-direction:column;">');
 
                     // Add button and toggle switch for "Live Location" if necessary
                     if (jsonLd['@type'] === 'Place' && 'liveUrl' in jsonLd) {
@@ -154,7 +156,7 @@ rcmail.render_structured_data = function() {
                         checkboxLabel.append(autoRefreshLocationToggle);
                         checkboxLabel.append($('span.roundbutton'));
 
-                        var refreshLocationDiv = $('<div class="info refresh-location-div" style="background-color:#f1f1f1;width:100%;display:flex;flex-direction:row;padding:10px;margin-bottom:10px;">');
+                        var refreshLocationDiv = $('<div class="info refresh-location-div" style="width:100%;display:flex;flex-direction:row;padding:10px;margin-bottom:10px;">');
                         refreshLocationDiv.append(refreshLocationButton);
                         refreshLocationDiv.append(checkboxLabel);
                         
